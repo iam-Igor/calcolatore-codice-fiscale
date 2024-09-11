@@ -10,7 +10,7 @@ export const calculate = (
   anno
 ) => {
   return fetch(
-    `http://api.miocodicefiscale.com/calculate?lname=${cognome}
+    `https://api.miocodicefiscale.com/calculate?lname=${cognome}
     &fname=${nome}&gender=${sesso}&city=${luogo}
     &state=${provincia}&day=${giorno}&month=${mese}
     &year=${anno}&access_token=${api}`
