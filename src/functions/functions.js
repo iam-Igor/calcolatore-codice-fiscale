@@ -1,5 +1,4 @@
 export const calculate = (
-  api,
   cognome,
   nome,
   sesso,
@@ -7,7 +6,8 @@ export const calculate = (
   provincia,
   giorno,
   mese,
-  anno
+  anno,
+  api
 ) => {
   return fetch(
     `https://api.miocodicefiscale.com/calculate?lname=${cognome}
