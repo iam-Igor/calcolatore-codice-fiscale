@@ -1,6 +1,7 @@
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import comuni from "../assets/comuni.json";
 import { useState } from "react";
+import { calculate } from "../functions/functions";
 
 const MainComp = () => {
   const [nome, SetNome] = useState("");
@@ -9,10 +10,29 @@ const MainComp = () => {
   const [provincia, SetProvincia] = useState(comuni[0].codiceCatastale);
   const [data, SetData] = useState("");
   const [sesso, SetSesso] = useState("M");
+  const api_key = import.meta.env.VITE_COD_API;
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(data);
+    let giorno = data.substring(8);
+    let mese = data.substring(5, 7);
+    let anno = data.substring(0, 4);
+
+    console.log("giorno", giorno);
+    console.log("mese", mese);
+    console.log("anno", anno);
+
+    calculate(
+      cognome,
+      nome,
+      sesso,
+      luogo,
+      provincia,
+      giorno,
+      mese,
+      anno,
+      api_key
+    );
   };
 
   return (
