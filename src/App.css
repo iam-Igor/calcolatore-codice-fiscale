@@ -1,0 +1,93 @@
+/* GENERAL */
+
+.bg_primary {
+  background-color: #0288d1;
+  color: white !important;
+}
+
+.bg_secondary {
+  background-color: #b3e5fc !important;
+}
+
+.bg_terziary {
+  background-color: lightgray;
+}
+
+.main-card {
+  border: 2px solid #0288d1 !important;
+}
+
+/* FORM */
+
+.form-label {
+  margin-bottom: 0 !important;
+  color: #212121 !important;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 481px) {
+  .long-input {
+    width: 77.5% !important;
+  }
+
+  .right-label {
+    width: 140px;
+  }
+
+  .prov-cont {
+    width: 50%;
+  }
+
+  .prov-lab {
+    width: 67%;
+  }
+
+  .sex-cont {
+    width: 30%;
+  }
+
+  .sex-input {
+    width: 66% !important;
+  }
+
+  .date-input {
+    width: 20% !important;
+    margin-left: 0.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-label {
+    font-size: 0.9em !important;
+  }
+
+  .long-input {
+    width: 80% !important;
+  }
+
+  .right-label {
+    width: 28%;
+  }
+
+  .prov-lab {
+    width: 36%;
+  }
+
+  .sex-cont {
+    width: 50%;
+  }
+
+  .sex-input {
+    background-size: 10px 8px !important;
+    padding: 0.2rem 1.25rem 0.175rem 0.25rem !important;
+  }
+
+  .prov-input {
+    width: 57% !important;
+  }
+
+  .date-input {
+    width: 80% !important;
+    margin-left: 0.5em;
+  }
+}
