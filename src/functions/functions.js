@@ -14,7 +14,7 @@ export const calculate = (
   )
     .then((res) => {
       if (res.ok) {
-        return res.json;
+        return res.json();
       } else {
         throw new Error("error fetching data");
       }

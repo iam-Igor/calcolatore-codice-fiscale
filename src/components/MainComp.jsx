@@ -12,6 +12,23 @@ const MainComp = () => {
   const [sesso, SetSesso] = useState("M");
   const api_key = import.meta.env.VITE_COD_API;
 
+  const test = () => {
+    fetch(`https://api.miocodicefiscale.com/ping?access_token=${api_key}`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("error");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
     let giorno = data.substring(8);
@@ -22,17 +39,19 @@ const MainComp = () => {
     console.log("mese", mese);
     console.log("anno", anno);
 
-    calculate(
-      cognome,
-      nome,
-      sesso,
-      luogo,
-      provincia,
-      giorno,
-      mese,
-      anno,
-      api_key
-    );
+    // calculate(
+    //   cognome,
+    //   nome,
+    //   sesso,
+    //   luogo,
+    //   provincia,
+    //   giorno,
+    //   mese,
+    //   anno,
+    //   api_key
+    // );
+
+    test();
   };
 
   return (
