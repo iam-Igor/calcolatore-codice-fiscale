@@ -12,8 +12,9 @@ export const calculate = (
   return fetch(
     `https://api.miocodicefiscale.com/calculate?lname=${cognome}
     &fname=${nome}&gender=${sesso}&city=${luogo}
-    &state=${provincia}&day=${giorno}&month=${mese}
-    &year=${anno}&access_token=${api}`
+    &state=${provincia}&abolished=${false}
+    &day=${giorno}&month=${mese}
+    &year=${anno}&omocodia_level=${1}&access_token=${api}`
   )
     .then((res) => {
       if (res.ok) {
