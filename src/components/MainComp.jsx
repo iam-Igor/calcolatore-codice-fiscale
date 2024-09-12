@@ -1,7 +1,15 @@
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
 import comuni from "../assets/comuni.json";
-import { useState } from "react";
-import { calculate } from "../functions/functions";
+import { useEffect, useState } from "react";
+import CodiceFiscale from "codice-fiscale-js";
 
 const MainComp = () => {
   const [nome, SetNome] = useState("");
@@ -10,24 +18,10 @@ const MainComp = () => {
   const [provincia, SetProvincia] = useState(comuni[0].codiceCatastale);
   const [data, SetData] = useState("");
   const [sesso, SetSesso] = useState("M");
-  const api_key = import.meta.env.VITE_COD_API;
-
-  const test = () => {
-    fetch(`https://api.miocodicefiscale.com/ping?access_token=${api_key}`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("error");
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const [cfCode, SetCfCode] = useState(null);
+  const [isLoading, SetIsLoading] = useState(false);
+  const [error, SetError] = useState(false);
+  const [errorMsg, SetErrorMsg] = useState("");
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -35,24 +29,36 @@ const MainComp = () => {
     let mese = data.substring(5, 7);
     let anno = data.substring(0, 4);
 
-    console.log("giorno", giorno);
-    console.log("mese", mese);
-    console.log("anno", anno);
+    SetIsLoading(true);
 
-    // calculate(
-    //   cognome,
-    //   nome,
-    //   sesso,
-    //   luogo,
-    //   provincia,
-    //   giorno,
-    //   mese,
-    //   anno,
-    //   api_key
-    // );
+    setTimeout(() => {
+      try {
+        var cf = new CodiceFiscale({
+          name: nome,
+          surname: cognome,
+          gender: sesso,
+          day: parseInt(giorno),
+          month: parseInt(mese),
+          year: parseInt(anno),
+          birthplace: luogo,
+          birthplaceProvincia: provincia, // Optional
+        });
 
-    test();
+        SetCfCode(cf);
+      } catch (error) {
+        SetError(true);
+        SetErrorMsg(error.message);
+      } finally {
+        SetIsLoading(false);
+      }
+    }, 2000);
   };
+
+  useEffect(() => {
+    if (cfCode) {
+      console.log(cfCode);
+    }
+  }, [cfCode]);
 
   return (
     <Container fluid className="bg_terziary vh-100">
@@ -76,6 +82,7 @@ const MainComp = () => {
                     <Form.Label className="me-2 right-label">Nome</Form.Label>
                     <Form.Control
                       type="text"
+                      required
                       placeholder="Es. Mario"
                       className="long-input"
                       value={nome}
@@ -89,6 +96,7 @@ const MainComp = () => {
                       Cognome
                     </Form.Label>
                     <Form.Control
+                      required
                       type="text"
                       placeholder="Es. Rossi"
                       className="long-input"
@@ -103,6 +111,7 @@ const MainComp = () => {
                       Luogo di nascita
                     </Form.Label>
                     <Form.Control
+                      required
                       type="text"
                       placeholder="Es. Milano"
                       className="long-input"
@@ -125,7 +134,7 @@ const MainComp = () => {
                       >
                         {comuni.map((comune, index) => {
                           return (
-                            <option key={index} value={comune.codiceCatastale}>
+                            <option key={index} value={comune.sigla}>
                               {comune.nome}
                             </option>
                           );
@@ -154,6 +163,7 @@ const MainComp = () => {
                       Data di nascita
                     </Form.Label>
                     <Form.Control
+                      required
                       type="date"
                       className="date-input"
                       value={data}
@@ -162,12 +172,39 @@ const MainComp = () => {
                       }}
                     />
                   </Form.Group>
-                  <Button className="shadow btn-success" type="submit">
-                    Calcola
-                  </Button>
+                  {isLoading ? (
+                    <div className="dots py-2"></div>
+                  ) : (
+                    <Button
+                      className="shadow btn-success rounded-4"
+                      type="submit"
+                    >
+                      Calcola
+                    </Button>
+                  )}
                 </Form>
               </div>
             </Card.Body>
+            {cfCode ? (
+              <>
+                <hr></hr>
+                <div className="p-4 pt-0 text-center fw-bold fs-2">
+                  {cfCode.code}
+                </div>
+              </>
+            ) : error ? (
+              <Alert
+                variant="danger mt-3"
+                dismissible
+                onClose={() => {
+                  SetError(false);
+                }}
+              >
+                {errorMsg}
+              </Alert>
+            ) : (
+              ""
+            )}
           </Card>
         </Col>
       </Row>
