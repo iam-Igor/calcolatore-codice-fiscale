@@ -100,7 +100,7 @@ const Inverse = () => {
             {info ? (
               <>
                 <hr></hr>
-                <div className="p-4 pt-0 text-center fs-4 infos">
+                <div className="p-4 pt-0 text-center fs-5 text-white infos">
                   <p>
                     Nome: <span>{info.name}</span>
                   </p>

@@ -74,7 +74,7 @@ const MainComp = () => {
   return (
     <Container
       fluid
-      className="bg_terziary cont vh-100"
+      className="bg_terziary cont vh-100 pb-4"
       transition-style="in:circle:center"
     >
       <Row>
