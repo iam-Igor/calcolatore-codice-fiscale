@@ -1,32 +1,38 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CustNav = () => {
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const goTo = (path) => {
-    if (path === "/") {
-      navigate("/");
-    } else if (path === "/inverse") {
-      navigate("/inverse");
-    }
+    navigate(path);
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary shadow">
+    <Navbar expand="lg" className="bg-body-tertiary shadow_btm">
       <Container>
-        <Navbar.Brand href="#home">Codice Fiscale Utility</Navbar.Brand>
+        <Navbar.Brand
+          onClick={() => {
+            goTo("/calcola-cf");
+          }}
+        >
+          Codice Fiscale Utility
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link
+              className={location.pathname === "/calcola-cf" ? "fw-bold" : ""}
               onClick={() => {
-                goTo("/");
+                goTo("/calcola-cf");
               }}
             >
               Calcolo CF
             </Nav.Link>
             <Nav.Link
+              className={location.pathname === "/inverse" ? "fw-bold" : ""}
               onClick={() => {
                 goTo("/inverse");
               }}

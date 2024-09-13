@@ -6,6 +6,10 @@ body {
   font-family: "Outfit", system-ui !important;
 }
 
+.shadow_btm {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -18,11 +22,11 @@ body {
 }
 
 .bg_secondary {
-  background-color: #b3e5fc !important;
+  background-color: #0288d1 !important;
 }
 
 .bg_terziary {
-  background-color: lightgray;
+  background-color: #e5e5e5;
 }
 
 .main-card {
@@ -33,7 +37,7 @@ body {
 
 .form-label {
   margin-bottom: 0 !important;
-  color: #212121 !important;
+  color: white;
   font-weight: 600;
 }
 

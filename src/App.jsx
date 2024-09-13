@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <CustNav />
       <Routes>
-        <Route path="/" element={<MainComp />} />
+        <Route path="/calcola-cf" element={<MainComp />} />
         <Route path="/inverse" element={<Inverse />} />
       </Routes>
       <Footer />

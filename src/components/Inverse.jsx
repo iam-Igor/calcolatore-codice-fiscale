@@ -42,12 +42,20 @@ const Inverse = () => {
       <Row>
         <Col className="d-flex justify-content-center mt-4 ">
           <Card
-            className="py-3 bg_secondary rounded-4 p-3 shadow main-card"
+            className="py-3 bg_secondary rounded-5 p-3 shadow_btm main-card"
             style={{ width: "50rem" }}
           >
             <Card.Body className="p-1">
-              <Card.Title className="bg_primary p-3 rounded-3">
-                Calcolo codice fiscale inverso
+              <Card.Title className="p-3 rounded-3 bg-white rounded-4 shadow mb-4">
+                <div className="d-flex justify-content-between align-items-center">
+                  <p className="m-0">Calcolo codice fiscale inverso</p>
+                  <img
+                    width="30"
+                    height="30"
+                    src="https://img.icons8.com/offices/30/italy.png"
+                    alt="italy"
+                  />
+                </div>
               </Card.Title>
               <div className="form-cont">
                 <Form
@@ -76,7 +84,7 @@ const Inverse = () => {
                     <div className="dots py-2"></div>
                   ) : (
                     <Button
-                      className="shadow btn-success rounded-4"
+                      className="shadow_btm btn-success rounded-4"
                       type="submit"
                     >
                       Calcola
