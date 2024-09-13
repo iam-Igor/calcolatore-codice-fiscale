@@ -5,7 +5,9 @@ import {
   Col,
   Container,
   Form,
+  OverlayTrigger,
   Row,
+  Tooltip,
 } from "react-bootstrap";
 import comuni from "../assets/comuni.json";
 import { useEffect, useState } from "react";
@@ -22,6 +24,21 @@ const MainComp = () => {
   const [isLoading, SetIsLoading] = useState(false);
   const [error, SetError] = useState(false);
   const [errorMsg, SetErrorMsg] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {isCopied ? "Copiato negli appunti" : "Copia negli appunti"}
+    </Tooltip>
+  );
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(cfCode);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -55,7 +72,11 @@ const MainComp = () => {
   };
 
   return (
-    <Container fluid className="bg_terziary cont vh-100">
+    <Container
+      fluid
+      className="bg_terziary cont vh-100"
+      transition-style="in:circle:center"
+    >
       <Row>
         <Col className="d-flex justify-content-center mt-4 main-col">
           <Card
@@ -190,8 +211,37 @@ const MainComp = () => {
             {cfCode ? (
               <>
                 <hr></hr>
-                <div className="p-4 pt-0 text-center fw-bold fs-2">
-                  {cfCode.code}
+                <div className="p-4 pt-0 text-center fw-bold fs-2 text-white d-flex justify-content-center">
+                  <p className="m-0">{cfCode.code}</p>
+                  <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltip}
+                  >
+                    <div
+                      className={`clipboard ms-2 ${isCopied ? "copied" : ""}`}
+                      onClick={handleCopy}
+                    >
+                      <svg
+                        width="16"
+                        height="32"
+                        viewBox="0 0 16 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M3 12.75V4.25C3 3.42157 3.67157 2.75 4.5 2.75H12C12.8284 2.75 13.5 3.42157 13.5 4.25V12.75C13.5 13.5784 12.8284 14.25 12 14.25H4.5C3.67157 14.25 3 13.5784 3 12.75Z" />
+                        <path
+                          d="M3 12.75V4.25C3 3.42157 3.67157 2.75 4.5 2.75H12C12.8284 2.75 13.5 3.42157 13.5 4.25V12.75C13.5 13.5784 12.8284 14.25 12 14.25H4.5C3.67157 14.25 3 13.5784 3 12.75Z"
+                          className="page"
+                        />
+                        <path
+                          d="M6.25 9.75L7.75 11.25L10.25 7.75"
+                          className="check"
+                        />
+                        <path d="M7 1.75001C6.72386 1.75001 6.5 1.97387 6.5 2.25001V3.5C6.5 4.4665 7.2835 5.25 8.25 5.25C9.2165 5.25 10 4.4665 10 3.5V2.25C10 1.97386 9.77614 1.75 9.5 1.75L7 1.75001Z" />
+                      </svg>
+                    </div>
+                  </OverlayTrigger>
                 </div>
               </>
             ) : error ? (

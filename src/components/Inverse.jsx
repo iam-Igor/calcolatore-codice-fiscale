@@ -38,7 +38,11 @@ const Inverse = () => {
   };
 
   return (
-    <Container fluid className="bg_terziary cont vh-100">
+    <Container
+      fluid
+      className="bg_terziary cont vh-100"
+      transition-style="in:circle:center"
+    >
       <Row>
         <Col className="d-flex justify-content-center mt-4 ">
           <Card

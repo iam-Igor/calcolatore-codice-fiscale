@@ -10,6 +10,23 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+@keyframes circle-in-center {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(125%);
+  }
+}
+
+[transition-style="in:circle:center"] {
+  animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -34,6 +51,12 @@ body {
 }
 
 /* FORM */
+
+.form-control,
+.form-select {
+  border-radius: 11px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
 
 .form-label {
   margin-bottom: 0 !important;
@@ -113,9 +136,9 @@ body {
 .dots {
   width: 56px;
   height: 13.4px;
-  background: radial-gradient(circle closest-side, #1e8754 90%, #0000) 0% 50%,
-    radial-gradient(circle closest-side, #1e8754 90%, #0000) 50% 50%,
-    radial-gradient(circle closest-side, #1e8754 90%, #0000) 100% 50%;
+  background: radial-gradient(circle closest-side, white 90%, #0000) 0% 50%,
+    radial-gradient(circle closest-side, white 90%, #0000) 50% 50%,
+    radial-gradient(circle closest-side, white 90%, #0000) 100% 50%;
   background-size: calc(100% / 3) 100%;
   background-repeat: no-repeat;
   animation: dots-zcf63l 1s infinite linear;
@@ -173,4 +196,76 @@ a:not(.nav-link) {
 
 .navbar-brand {
   color: inherit !important;
+}
+
+/* CLIPBOARD */
+
+.clipboard {
+  width: 32px;
+  height: 32px;
+  padding: 0px;
+  transform: scale(2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+@media screen and (max-width: 480px) {
+  .clipboard {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    transform: scale(2);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+}
+
+.clipboard svg {
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+.clipboard svg path {
+  stroke-width: 1.5;
+  stroke: white;
+  fill: black;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.clipboard svg path.page {
+  transform-origin: center;
+}
+.clipboard svg path.check {
+  transform-origin: center;
+  stroke-dasharray: 8;
+  stroke-dashoffset: 8;
+  stroke: #83f5ad;
+}
+
+.clipboard:hover svg {
+  opacity: 1;
+}
+.clipboard.copied svg path.page {
+  animation: copiedPage 2s ease forwards;
+}
+.clipboard.copied svg path.check {
+  stroke-dasharray: 16;
+  transition: all 0.5s ease;
+  animation: copiedPage 2s ease forwards;
+}
+
+@keyframes copiedPage {
+  0% {
+    transform: rotate(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(10deg) translateY(16px);
+    opacity: 0;
+  }
 }
