@@ -54,16 +54,10 @@ const MainComp = () => {
     }, 2000);
   };
 
-  useEffect(() => {
-    if (cfCode) {
-      console.log(cfCode);
-    }
-  }, [cfCode]);
-
   return (
-    <Container fluid className="bg_terziary vh-100">
+    <Container fluid className="bg_terziary cont vh-100">
       <Row>
-        <Col className="d-flex justify-content-center mt-4">
+        <Col className="d-flex justify-content-center mt-4 main-col">
           <Card
             className="py-3 bg_secondary rounded-4 p-3 shadow main-card"
             style={{ width: "50rem" }}

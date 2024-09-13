@@ -1,8 +1,15 @@
 /* GENERAL */
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 body {
   font-family: "Outfit", system-ui !important;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .bg_primary {
@@ -122,4 +129,44 @@ body {
   66% {
     background-size: calc(100% / 3) 100%, calc(100% / 3) 100%, calc(100% / 3) 0%;
   }
+}
+
+/* INVERSE PAGE */
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infos p {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infos p {
+  font-weight: bold;
+}
+
+.infos span {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 480px) {
+  .infos p {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em !important;
+  }
+}
+
+/* NAVBAR */
+a:not(.nav-link) {
+  color: white;
+}
+
+.navbar-brand {
+  color: inherit !important;
 }
