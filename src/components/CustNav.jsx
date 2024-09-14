@@ -14,6 +14,7 @@ const CustNav = () => {
     <Navbar expand="lg" className="bg-body-tertiary shadow_btm sticky-top">
       <Container>
         <Navbar.Brand
+          className="pointer"
           onClick={() => {
             goTo("/calcola-cf");
           }}
