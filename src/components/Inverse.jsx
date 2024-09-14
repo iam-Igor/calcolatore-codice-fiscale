@@ -40,7 +40,7 @@ const Inverse = () => {
   return (
     <Container
       fluid
-      className="bg_terziary cont vh-100"
+      className="bg_terziary cont vh-100 mt-1"
       transition-style="in:circle:center"
     >
       <Row>
@@ -94,6 +94,14 @@ const Inverse = () => {
                       Calcola
                     </Button>
                   )}
+                  <Button
+                    className="btn-danger rounded-4 ms-4 shadow_btm"
+                    onClick={() => {
+                      window.location.reload();
+                    }}
+                  >
+                    Reset
+                  </Button>
                 </Form>
               </div>
             </Card.Body>

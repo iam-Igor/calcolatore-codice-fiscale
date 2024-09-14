@@ -11,7 +11,7 @@ const CustNav = () => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary shadow_btm">
+    <Navbar expand="lg" className="bg-body-tertiary shadow_btm sticky-top">
       <Container>
         <Navbar.Brand
           onClick={() => {
