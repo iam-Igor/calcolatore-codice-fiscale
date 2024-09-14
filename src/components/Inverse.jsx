@@ -85,7 +85,7 @@ const Inverse = () => {
                   </Form.Group>
 
                   {isLoading ? (
-                    <div className="dots py-2"></div>
+                    <div className="dots py-2 d-inline-block"></div>
                   ) : (
                     <Button
                       className="shadow_btm btn-success rounded-4"
